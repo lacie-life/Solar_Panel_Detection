@@ -12,7 +12,7 @@ import imutils
 lost_flag = 1
 rot = 1
 print("check")
-im =cv2.imread("/home/agx/Github/Solar_Panel_Detection/images/test_1.jpg")
+im =cv2.imread("/home/agx/Github/Solar_Panel_Detection/images/input/test3.png")
 
 
 h_f, width_f, n = im.shape
@@ -101,31 +101,31 @@ def in_list(x,y):
             return 1
     return 0
 
-def sort(monadika):
+def sort(unique):
     dimension = 0
 
-    for i in range(len(monadika)):
-        dimension = (monadika[i][1] - monadika[i][0]) + dimension
+    for i in range(len(unique)):
+        dimension = (unique[i][1] - unique[i][0]) + dimension
 
-    dimension = int(dimension / len(monadika))
+    dimension = int(dimension / len(unique))
     i = 0
 
     sorted = []
     miny_pos = 0
     miny_pos2 = 0
     flag_min_pos = 0
-    while len(monadika) != 0:  # sort all frames
-        miny = monadika[0][2]
+    while len(unique) != 0:  # sort all frames
+        miny = unique[0][2]
         miny_pos = 0
         flag_min_pos = 0
 
-        for j in range(0, len(monadika)):  # find the minY
-            if miny > monadika[j][2]:
-                miny = monadika[j][2]
+        for j in range(0, len(unique)):  # find the minY
+            if miny > unique[j][2]:
+                miny = unique[j][2]
                 miny_pos = j
                 flag_min_pos = 1
 
-        temp = monadika[0]
+        temp = unique[0]
 
         miny = int(miny + (dimension*0.20))
         miny2 = int (miny + dimension*0.60)
@@ -135,15 +135,15 @@ def sort(monadika):
         flag = 1
         flag_exit = 0
 
-        while (flag == 1):  # sort monadika in temp by y
-            if (miny < monadika[j][3] and miny > monadika[j][2]) or (miny2 < monadika[j][3] and miny2 > monadika[j][2]):
-                temp = monadika.pop(j)
+        while (flag == 1):  # sort unique in temp by y
+            if (miny < unique[j][3] and miny > unique[j][2]) or (miny2 < unique[j][3] and miny2 > unique[j][2]):
+                temp = unique.pop(j)
 
                 sorted_temp.append(temp)
                 flag_exit = 1
             else:
                 j = j + 1
-            if (j == len(monadika)):
+            if (j == len(unique)):
                 flag = 0
 
         # sorted_temp has all y frames
@@ -162,8 +162,8 @@ def sort(monadika):
 
             sorted.append(temp2)
             # extra kodikas gia diplotipa
-        if flag_exit == 0 and miny_pos < len(monadika):  # an den yparxei plaisio stn a3ona y
-            monadika.pop(miny_pos)
+        if flag_exit == 0 and miny_pos < len(unique):  # an den yparxei plaisio stn a3ona y
+            unique.pop(miny_pos)
     return sorted
 
 def rec(pos, y, length):
@@ -315,7 +315,7 @@ def write_and_crop(list,original_crop):
 
     temp = list[0]
     string = "./Panels/" # vale dame to path
-    f=open("./Results/where.txt",'w')
+    f=open("./results/where.txt",'w')
     #f.write(str(len(list))+"\n")
     for i in range(0, len(list)):
         str_path = (string + str(i+1) + ".jpg")
@@ -659,8 +659,8 @@ def lost(list,final):
 
 
 def duplicate(list_all):
-    monadika = []
-    flag = 1
+    unique = []
+    flag = 0
     dimension = 0
     dimension_y = 0
 
@@ -672,9 +672,12 @@ def duplicate(list_all):
     dimension_y = int(dimension_y / len(list_all))
     dimension = int(dimension / len(list_all))
 
+    print("Dimension: ", dimension)
+    print("Dimension y :", dimension_y )
+
     i = 0
 
-    while flag:  # megala plaisia
+    while flag:  # large frames
         avx = (list_all[i][1] - list_all[i][0])
         if (avx > int(dimension * 1.5)) or (avx < int(dimension*0.5)) or ((list_all[i][3]-list_all[i][2])<(dimension_y*0.65)):
             list_all.pop(i)
@@ -684,30 +687,32 @@ def duplicate(list_all):
         if i == len(list_all):
             flag = 0
 
+    print(len(list_all))
+
     flag = 1
     p = dimension*0.2
     for i in range(0, len(list_all)):
         flag = 1
         temp = list_all.pop()
 
-        for j in range(0, len(monadika)):  # if already exist
-            if same_range(temp[0], temp[1], monadika[j][0]+p, monadika[j][1]-p) and same_range(temp[2], temp[3],
-                                                                                           monadika[j][2]+p,
-                                                                                           monadika[j][3]-p):
-                # if monadika[j][0] > temp[0]:
-                #     monadika[j][0] = temp[0]
-                # if monadika[j][2] > temp[2]:
-                #     monadika[j][2] = temp[2]
-                # if monadika[j][1] < temp[1]:
-                #     monadika[j][1] = temp[1]
-                # if monadika[j][3] > temp[3]:
-                #     monadika[j][3] = temp[3]
+        for j in range(0, len(unique)):  # if already exist
+            if same_range(temp[0], temp[1], unique[j][0]+p, unique[j][1]-p) and same_range(temp[2], temp[3],
+                                                                                           unique[j][2]+p,
+                                                                                           unique[j][3]-p):
+                # if unique[j][0] > temp[0]:
+                #     unique[j][0] = temp[0]
+                # if unique[j][2] > temp[2]:
+                #     unique[j][2] = temp[2]
+                # if unique[j][1] < temp[1]:
+                #     unique[j][1] = temp[1]
+                # if unique[j][3] > temp[3]:
+                #     unique[j][3] = temp[3]
 
                 flag = 0
         if flag == 1:
-            monadika.append(temp)
-
-    return monadika
+            unique.append(temp)
+    print("Duplicate: ", unique)
+    return unique
 
 
 def auto_canny(image, sigma=0.55):
@@ -755,8 +760,10 @@ def positions(squares):
         list.append(ymax)
         list.append(0)
         list.append(0)
+        #print(list)
 
         list_all.append(list)
+    print(len(list_all))
     return list_all
 
 def angle (a, b, c):
@@ -778,18 +785,23 @@ def rotation(original):
     img = cv2.dilate(img, np.ones((5, 5)))
     t, img = cv2.threshold(img, 160, 255, cv2.THRESH_BINARY)
 
-    cv2.imshow("check", img)
-    cv2.waitKey(0)
+    #cv2.imshow("check", img)
+    #cv2.waitKey(0)
 
     pos_list = find_squares(img)
-    pos_list = positions(pos_list)
+    print("Size pos_list: ", len(pos_list))
+    #print(pos_list)
+
     print(len(pos_list),"  ->before")
 
-    print(len(pos_list),"  ->after")
+    pos_list = positions(pos_list)
 
     pos_list = duplicate(pos_list)
+    
+    print(len(pos_list),"  ->after")
     pos_list = sort(pos_list)
 
+    print("Check: ", pos_list)
     max_pos = []
     next = []
     max_len = 0
@@ -839,8 +851,7 @@ def rotation(original):
         # h,width,n = rotated.shape
         # print(rotated.shape)
 
-    h_f, width_f, n = rotated.shapeso
-
+    h_f, width_f, n = rotated.shape
 
     return rotated
 
@@ -876,7 +887,7 @@ if __name__ == '__main__':
         cv2.waitKey(0)
 
         new = img
-        count_plaisia = 0
+        count_frames = 0
 
         list_all = []
         list=[]
@@ -891,7 +902,7 @@ if __name__ == '__main__':
         dup = duplicate(list_all)
         sorted = sort(dup)
         mark_frames(sorted,original)
-        write_and_crop(sorted,original_crop)  # thelei na t valeis path
+        write_and_crop(sorted,original_crop)
         # final = []
 
         # while(len(sorted)!=0):
@@ -903,7 +914,7 @@ if __name__ == '__main__':
         cv2.namedWindow('marked', cv2.WINDOW_NORMAL)
         cv2.imshow("marked", original)
         cv2.waitKey(0)
-        print("plaisia marked = ",count_plaisia)
-        cv2.imwrite("./Results/rotated.jpg", original_crop)
-        cv2.imwrite("./Results/foundSolar.jpg", original)
+        print("frames marked = ",count_frames)
+        cv2.imwrite("./images/output/rotated.jpg", original_crop)
+        cv2.imwrite("./images/output/foundSolar.jpg", original)
 
