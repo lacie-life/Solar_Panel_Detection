@@ -164,6 +164,8 @@ def sort(unique):
             # extra kodikas gia diplotipa
         if flag_exit == 0 and miny_pos < len(unique):  # an den yparxei plaisio stn a3ona y
             unique.pop(miny_pos)
+
+    print("Sorted: ", sorted)
     return sorted
 
 def rec(pos, y, length):
@@ -799,9 +801,9 @@ def rotation(original):
     pos_list = duplicate(pos_list)
     
     print(len(pos_list),"  ->after")
-    pos_list = sort(pos_list)
+    #pos_list = sort(pos_list)
 
-    print("Check: ", pos_list)
+    #print("Check: ", pos_list)
     max_pos = []
     next = []
     max_len = 0
