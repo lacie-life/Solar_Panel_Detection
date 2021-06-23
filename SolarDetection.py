@@ -12,7 +12,8 @@ import imutils
 lost_flag = 1
 rot = 1
 print("check")
-im =cv2.imread("/home/agx/Github/Solar_Panel_Detection/images/input/test3.png")
+
+im =cv2.imread("images/input/test.jpg")
 
 
 h_f, width_f, n = im.shape
@@ -774,9 +775,8 @@ def angle (a, b, c):
 def rotation(original):
 
     global h_f, width_f
-    
 
-    img = cv2.cvtColor(original, cv2.COLOR_BGR2GRAY)  # gray
+    img = cv2.cvtColor(original, cv2.COLOR_RGB2GRAY)  # gray
     img = cv2.blur(img, (3, 3))
 
     kernel = np.ones((5, 5), np.uint8)
@@ -787,8 +787,8 @@ def rotation(original):
     img = cv2.dilate(img, np.ones((5, 5)))
     t, img = cv2.threshold(img, 160, 255, cv2.THRESH_BINARY)
 
-    #cv2.imshow("check", img)
-    #cv2.waitKey(0)
+    cv2.imshow("check", img)
+    cv2.waitKey(0)
 
     pos_list = find_squares(img)
     print("Size pos_list: ", len(pos_list))
@@ -886,7 +886,7 @@ if __name__ == '__main__':
         # cv2.drawContours(original, squares, -1, (0, 255, 0), 1)
         cv2.namedWindow('marked', cv2.WINDOW_NORMAL)
         cv2.imshow("marked", original)
-        cv2.waitKey(0)
+        #cv2.waitKey(0)
 
         new = img
         count_frames = 0
