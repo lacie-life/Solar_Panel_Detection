@@ -1,0 +1,5 @@
+numpy
+tensorflow
+scikit-image
+matplotlib
+pandas
