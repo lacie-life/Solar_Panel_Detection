@@ -1,0 +1,8 @@
+name: viewer
+
+dependencies:
+- python=3
+- pip:
+  - flask
+  - requests
+

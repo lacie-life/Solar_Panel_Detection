@@ -1,0 +1,8 @@
+# packages in environment at /Users/semyeong/anaconda/envs/webapp:
+#
+
+flask
+gunicorn
+jinja2
+werkzeug
+requests

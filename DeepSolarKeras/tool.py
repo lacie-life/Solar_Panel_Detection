@@ -2,7 +2,7 @@ import os
 
 import shutil
 import cv2
-from keras.applications import VGG16
+from keras.applications.vgg16 import VGG16
 from keras.layers import GlobalAveragePooling2D,MaxPooling2D, Dense, Dropout, BatchNormalization, Flatten
 from keras.models import Model
 from keras.preprocessing.image import img_to_array
