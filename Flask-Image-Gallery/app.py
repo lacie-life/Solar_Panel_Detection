@@ -15,6 +15,7 @@ app.config['IMAGE_EXTS'] = [".png", ".jpg", ".jpeg", ".gif", ".tiff"]
 
 
 def encode(x):
+    print(binascii.hexlify(x.encode('utf-8')).decode())
     return binascii.hexlify(x.encode('utf-8')).decode()
 
 def decode(x):

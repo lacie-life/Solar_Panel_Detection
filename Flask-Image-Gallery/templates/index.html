@@ -16,19 +16,12 @@
     {% endfor %}
   </div>
 
-  <div id="modal00" class="w3-modal" onclick="this.style.display='none'">
-    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+  <div id="modal00" class="w3-modal">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright" onclick="do_close()">&times;</span>
     <div class="w3-modal-content w3-animate-zoom">
-        <img id="img00" style="width:80%; height: 80%;">
-        <button id="process" hidden=True onclick=do_process()><b><u>PROCESS</u></b></button>
-    </div>
-  </div>
-
-  <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-    <div class="w3-modal-content w3-animate-zoom">
-        <img id="img01" style="width:40%; float: left; height: 40%;">
-        <img id="img02" style="width:40%; float: right; height: 40%">
+        <img id="img00" style="width:40%; float: left; height: 40%;">
+        <img id="img01" style="width:40%; float: right; height: 40%;">
+        <button class="w3-button w3-white w3-border w3-border-red w3-round-large" onclick="do_process()" ><b><u>Process</u></b></button>
     </div>
   </div>
 
