@@ -41,6 +41,6 @@
 function myfunction(element) {
   console.log("1");
   // document.getElementById("img01").src = element.src;
-  document.getElementById("img01").src = "./cdn/6173736574732f696d616765735c74657374332e706e67";
+  document.getElementById("img01").src = "./results/6173736574732f696d616765732f436c6f7365446574656374526573756c74302e6a7067";
   document.getElementById("modal01").style.display = "block";
 }
