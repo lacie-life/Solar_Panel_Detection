@@ -8,20 +8,26 @@
 </head>
 <body>
 <h1>Flask Image Gallery</h1>
-  <!-- <div class="overlay"><img src="blah" id="top" hidden=True>
-    <span id="close" hidden=True onclick=do_close()><b><u>CLOSE(X)</u></b></span>
-  </div> -->
+
   <div class="cx" style="background-color:#fff;">
     {% for path in paths %}
     <img class="image" src='cdn/{{ path }}' height=200 width=200 onclick="myfunction(this)" >
     {% endfor %}
   </div>
 
+  <div id="modal00" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+        <img id="img00" style="width:80%; height: 80%;">
+        <button id="process" hidden=True onclick=do_process()><b><u>PROCESS</u></b></button>
+    </div>
+  </div>
+
   <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
     <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
     <div class="w3-modal-content w3-animate-zoom">
-        <img id="img01" style="width:50%" style="height: 40%">
-        <img id="img02" style="width:50%" style="height: 40%">
+        <img id="img01" style="width:40%; float: left; height: 40%;">
+        <img id="img02" style="width:40%; float: right; height: 40%">
     </div>
   </div>
 
