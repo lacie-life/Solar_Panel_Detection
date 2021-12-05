@@ -10,7 +10,7 @@ import binascii
 import argparse
 
 
-app = Flask("Flask Image Gallery")
+app = Flask("Solar Panel Detection")
 app.config['IMAGE_EXTS'] = [".png", ".jpg", ".jpeg", ".gif", ".tiff"]
 
 

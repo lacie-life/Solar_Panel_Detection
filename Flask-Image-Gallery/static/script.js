@@ -1,5 +1,5 @@
 
-function myfunction(element) {
+function do_clicked(element) {
   console.log("1");
   document.getElementById("img00").src = element.src;
 
@@ -11,6 +11,9 @@ function myfunction(element) {
 
 function do_process() {
   console.log("1");
+
+  document.getElementById("modal00").style.display = "none";
+
   document.getElementById("img01").src = document.getElementById("img00").src;
 
   document.getElementById("img02").src = element.src.replaceAll('cdn', 'results');
