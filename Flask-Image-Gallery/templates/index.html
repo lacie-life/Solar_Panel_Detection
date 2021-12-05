@@ -3,17 +3,60 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="static/script.js"></script>
 </head>
 <body>
 <h1>Flask Image Gallery</h1>
-  <div class="overlay"><img src="blah" id="top" hidden=True>
+  <!-- <div class="overlay"><img src="blah" id="top" hidden=True>
     <span id="close" hidden=True onclick=do_close()><b><u>CLOSE(X)</u></b></span>
-  </div>
+  </div> -->
   <div class="cx" style="background-color:#fff;">
     {% for path in paths %}
-    <img src='cdn/{{ path }}' height=200 width=200 onclick="clicked_img(this)" >
+    <img class="image" src='cdn/{{ path }}' height=200 width=200 onclick="myfunction(this)" >
     {% endfor %}
   </div>
+
+  <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <img id="img01" style="width:100%" height="600px">
+    </div>
+  </div>
+
+  <style>
+    .image {
+   padding: 50px;
+   /* background-color: DodgerBlue; */
+   transition: transform .2s;
+   width: 200px;
+   height: 200px;
+   margin: 0 auto;
+  cursor: pointer;
+  aspect-ratio: 1.5/1;
+  color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+ }
+ /*Hiệu ứng zoom*/
+ .image:hover {
+   transform: scale(2.0);
+ }
+ .load-image {
+  display: block;
+  background: #ccc;
+  height: 400px;
+  width: 100%;
+  border-radius: 15px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+
+}
+  </style>
 </body>
 </html>
