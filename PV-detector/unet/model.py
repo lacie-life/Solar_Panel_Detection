@@ -1,15 +1,15 @@
 import numpy as np
 from keras import backend as K
 from keras.applications.vgg16 import VGG16
-from keras.engine.topology import Input
+from tensorflow.keras.layers import Input
 from keras.engine.training import Model
 from keras.layers import Input, merge
 from keras.layers.convolutional import Conv2D, Conv2DTranspose, UpSampling2D
 from keras.layers.core import Activation, SpatialDropout2D
 from keras.layers.merge import concatenate
-from keras.layers.normalization import BatchNormalization
+from tensorflow.keras.layers import BatchNormalization
 from keras.layers.pooling import MaxPooling2D
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 
 import losses
 import metrics

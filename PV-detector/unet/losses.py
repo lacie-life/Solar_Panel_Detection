@@ -1,5 +1,5 @@
 import keras.backend as K
-from keras.backend.tensorflow_backend import _to_tensor
+from keras.backend import _to_tensor
 from keras.losses import binary_crossentropy
 
 #dice_coef_loss_bce(y, p, dice=0.8, bce=0.2, bootstrapping='soft', alpha=1)
