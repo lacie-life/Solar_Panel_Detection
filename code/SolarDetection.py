@@ -13,7 +13,15 @@ lost_flag = 1
 rot = 1
 print("check")
 
-im =cv2.imread("images/input/test.jpg")
+im =cv2.imread("/home/jun/Github/Solar_Panel_Detection/Solar-Web/assets/images/real1.JPG")
+
+scale_percent = 60  # percent of original size
+width = int(im.shape[1] * scale_percent / 100)
+height = int(im.shape[0] * scale_percent / 100)
+dim = (width, height)
+
+# resize image
+resized = cv2.resize(im, dim, interpolation=cv2.INTER_AREA)
 
 
 h_f, width_f, n = im.shape
@@ -787,8 +795,8 @@ def rotation(original):
     img = cv2.dilate(img, np.ones((5, 5)))
     t, img = cv2.threshold(img, 160, 255, cv2.THRESH_BINARY)
 
-    cv2.imshow("check", img)
-    cv2.waitKey(0)
+    # cv2.imshow("check", img)
+    # cv2.waitKey(0)
 
     pos_list = find_squares(img)
     print("Size pos_list: ", len(pos_list))
@@ -884,8 +892,8 @@ if __name__ == '__main__':
 
         squares = prepro(original)
         # cv2.drawContours(original, squares, -1, (0, 255, 0), 1)
-        cv2.namedWindow('marked', cv2.WINDOW_NORMAL)
-        cv2.imshow("marked", original)
+        #cv2.namedWindow('marked', cv2.WINDOW_NORMAL)
+        #cv2.imshow("marked", original)
         #cv2.waitKey(0)
 
         new = img
@@ -914,8 +922,8 @@ if __name__ == '__main__':
         #         mark_frames(final)
 
         cv2.namedWindow('marked', cv2.WINDOW_NORMAL)
-        cv2.imshow("marked", original)
-        cv2.waitKey(0)
+        # cv2.imshow("marked", original)
+        # cv2.waitKey(0)
         print("frames marked = ",count_frames)
         cv2.imwrite("./images/output/rotated.jpg", original_crop)
         cv2.imwrite("./images/output/foundSolar.jpg", original)

@@ -34,20 +34,22 @@ def detect_panels(frame):
 
     print(type(screenCnt))
     cv2.drawContours(image=frame, contours=np.array(screenCnt), contourIdx=-1, color=(0, 255, 0), thickness=3)
-    cv2.imshow("Panel detection", frame)
-    cv2.waitKey(0)
+    #cv2.imshow("Panel detection", frame)
+    cv2.imwrite("result.jpg", frame)
+    print("OK")
+    #cv2.waitKey(0)
 
 def read_image(frame):
 
     # Display the resulting frame
-    cv2.imshow('Frame', frame)
-    cv2.waitKey(0)
+    #cv2.imshow('Frame', frame)
+    #cv2.waitKey(0)
     detect_panels(frame)
 
     # Closes all the frames
-    cv2.destroyAllWindows()
+    #cv2.destroyAllWindows()
 
 
 if __name__=="__main__":
-   im = cv2.imread("images/input/test9.jpg")
+   im = cv2.imread("/home/jun/Github/Solar_Panel_Detection/Solar-Web/assets/images/real1.JPG")
    read_image(im)
