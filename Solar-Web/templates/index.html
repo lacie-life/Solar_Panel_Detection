@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="static/script.js"></script>
 </head>
 <body>
-<h1>Solar Panel Detection</h1>
+  <div class = "top">
+    <h1>Solar Panel Detection</h1>
+  </div>
 
-  <div class="cx" style="background-color:#fff;">
+
+  <div class="cx" ">
     {% for path in paths %}
-    <img class="image" src='cdn/{{ path }}' height=200 width=200 onclick="do_clicked(this)" >
+    <img class="image" src='cdn/{{ path }}' onclick="do_clicked(this)" >
     {% endfor %}
   </div>
 
   <div id="modal00" class="w3-modal">
     <span class="w3-button w3-hover-red w3-xlarge w3-display-topright" onclick="do_close()">&times;</span>
-    <div class="w3-modal-content w3-animate-zoom">
-        <img id="img00" style="width:40%; float: left; height: 40%;">
-        <img id="img01" style="width:40%; float: right; height: 40%;">
-        <button class="w3-button w3-white w3-border w3-border-red w3-round-large" onclick="do_process()" ><b><u>Process</u></b></button>
+    <div id="layout_process" class="w3-modal-content w3-animate-zoom">
+        <img id="img00" style="width:40%; float: left; height: 100%; ">
+        <div id="loader" class="loader" style="float: right ; display: none;"></div>
+        <img id="img01" style="width:40%; float: right; height: 100%; display: none; ">
+        <button type="button" id="button" class="btn btn-success" onclick="do_process()">Process</button>
+        <!-- <button class="w3-button w3-white w3-border w3-border-red w3-round-large" onclick="do_process()" ><b><u>Process</u></b></button> -->
     </div>
   </div>
 
@@ -30,8 +36,8 @@
    padding: 50px;
    /* background-color: DodgerBlue; */
    transition: transform .2s;
-   width: 200px;
-   height: 200px;
+   width: 240px;
+   height: 250px;
    margin: 0 auto;
   cursor: pointer;
   aspect-ratio: 1.5/1;
@@ -41,7 +47,7 @@
  }
  /*Hiệu ứng zoom*/
  .image:hover {
-   transform: scale(2.0);
+   transform: scale(1.5);
  }
  .load-image {
   display: block;
@@ -58,6 +64,76 @@
   transition: all 0.3s ease;
 
 }
+#layout_process{
+  background-color:white;
+  height: 550px;
+  width: 1000px;
+}
+
+#button{
+  margin-top: 250px;
+  margin-left: 60px;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 220px;
+  height: 220px;
+  margin-top: 150px;
+  margin-right: 90px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+.top{
+  height: 50px;
+  background-color: rgb(41, 138, 98);
+  color: #fff;
+  text-align: center;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+body {
+  /* Location of the image */
+  background-image: url("./results/6173736574732f726573756c74735c61627374726163742d67656f6d65747269632d73686170652d636f6e6e656374696f6e2d776974682d33642d63756265732d6261636b67726f756e645f34323730352d3130352e6a7067");
+  
+  /* Image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  
+  /* Makes the image fixed in the viewport so that it doesn't move when 
+     the content height is greater than the image height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color:#464646;
+  
+  /* SHORTHAND CSS NOTATION
+   * background: url(background-photo.jpg) center center cover no-repeat fixed;
+   */
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 767px) {
+  body {
+    /* The file size of this background image is 93% smaller
+     * to improve page load speed on mobile internet connections */
+    background-image: url("./results/6173736574732f726573756c74735c61627374726163742d67656f6d65747269632d73686170652d636f6e6e656374696f6e2d776974682d33642d63756265732d6261636b67726f756e645f34323730352d3130352e6a7067");
+  }
+	}
   </style>
 </body>
 </html>
