@@ -10,6 +10,7 @@ function do_clicked(element) {
   // document.getElementById("img01").src = "./results/" + path;
   document.getElementById("modal00").style.display = "block";
   document.getElementById("loader").style.display = "block";
+  // document.getElementById("button").style.display = "block";
 
 }
 
@@ -23,6 +24,7 @@ function do_process() {
   x.style.display = "block";
   
   document.getElementById("modal00").style.display = "block";
+  // document.getElementById("button").style.display = "none";
 
 }
 
